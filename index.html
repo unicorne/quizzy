@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Question Imposter</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <main id="app">
+      <header class="app-header">
+        <h1>Question Imposter</h1>
+        <p class="tagline">Pass-the-phone deduction for any group.</p>
+      </header>
+
+      <section class="screen" id="screen-welcome" aria-live="polite">
+        <p>Grab 3–10 friends, pick a category, and see if you can spot the imposters.</p>
+        <div class="status" id="data-status">Loading word packs…</div>
+        <button id="btn-start" class="primary" disabled>Start</button>
+      </section>
+
+      <section class="screen" id="screen-player-setup" aria-live="polite">
+        <h2>Players</h2>
+        <p>Enter everyone&rsquo;s name. You can add or remove entries as needed.</p>
+        <form id="player-form">
+          <div id="player-inputs"></div>
+          <div class="inline-actions">
+            <button type="button" id="btn-add-player" class="secondary">Add player</button>
+            <span id="player-count-info">Players ready: 0 / 10</span>
+          </div>
+          <button type="submit" class="primary" id="btn-player-next" disabled>Next: Categories</button>
+        </form>
+      </section>
+
+      <section class="screen" id="screen-game-setup" aria-live="polite">
+        <h2>Round Setup</h2>
+        <form id="game-setup-form">
+          <label class="field">
+            <span>Category</span>
+            <select id="category-select"></select>
+          </label>
+          <label class="field">
+            <span>Number of imposters</span>
+            <select id="imposter-select"></select>
+          </label>
+          <button type="submit" class="primary">Start round</button>
+        </form>
+        <button id="btn-reset-players" class="link">Change players</button>
+      </section>
+
+      <section class="screen" id="screen-role-reveal" aria-live="polite">
+        <div class="reveal-card">
+          <p class="reveal-label">Player</p>
+          <p class="reveal-name" id="reveal-player-name">Player name</p>
+          <div class="role-display" id="role-display">
+            <p class="role-instruction" id="role-instruction">Tap to reveal your word</p>
+            <p class="role-word" id="role-word">Secret</p>
+          </div>
+          <button id="btn-reveal" class="primary">Tap to reveal</button>
+          <p class="privacy-tip">Shield the screen before tapping.</p>
+        </div>
+      </section>
+
+      <section class="screen" id="screen-ready" aria-live="polite">
+        <h2>Ready to start!</h2>
+        <p>All roles are assigned. Begin the conversation and stay suspicious.</p>
+        <div class="starting-player">
+          <p>Starting player</p>
+          <p class="reveal-name" id="starting-player-name">Player</p>
+        </div>
+        <div class="word-summary" id="word-summary" hidden>
+          <p><strong>Secret word:</strong> <span id="summary-word">???</span></p>
+          <p><strong>Imposter hint:</strong> <span id="summary-hint">???</span></p>
+        </div>
+        <button id="btn-toggle-summary" class="link">Reveal answers (after the round)</button>
+        <div class="ready-actions">
+          <button id="btn-new-round" class="primary">New round</button>
+          <button id="btn-new-players" class="secondary">Change players</button>
+        </div>
+      </section>
+    </main>
+
+    <template id="player-row-template">
+      <div class="player-row">
+        <input type="text" maxlength="18" inputmode="text" placeholder="Player name" />
+        <button type="button" class="icon-button" aria-label="Remove player">&times;</button>
+      </div>
+    </template>
+
+    <script type="module" src="assets/app.js"></script>
+  </body>
+</html>
